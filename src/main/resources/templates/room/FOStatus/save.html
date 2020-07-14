@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>FO Status detail</title>
+</head>
+<body>
+<th:block th:if="${action}">
+    <h1 th:text="${action}"></h1>
+</th:block>
+<form method="post" th:action="@{/rooms/FO/save}" th:object="${foStatus}">
+    <th:block th:if="${foStatus.getId()!=null}">
+        <input type="hidden" th:field="*{id}">
+    </th:block>
+    <table th:border="1">
+        <tr>
+            <td>Rank</td>
+            <td><input th:field="*{status}"></td>
+        </tr>
+        <tr>
+            <td>
+                <Button>Save</Button>
+            </td>
+        </tr>
+    </table>
+    <th:block th:if="${message}">
+        <h5 th:text="${message}"></h5>
+    </th:block>
+</form>
+</body>
+</html>

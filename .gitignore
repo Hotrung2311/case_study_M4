@@ -33,4 +33,9 @@ local.env
 
 ### VS Code ###
 .vscode/
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> 6bccdae96905c03a573de0621cde44902735f68f
 local.env
