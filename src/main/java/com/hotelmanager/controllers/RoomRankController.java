@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/rooms/room-ranks")
+@RequestMapping("/rooms/ranks")
 public class RoomRankController {
     @Autowired
     private RoomRankService roomRankService;

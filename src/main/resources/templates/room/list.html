@@ -6,29 +6,32 @@
 </head>
 <body>
 <h1>List all rooms</h1>
-<a th:href="@{/rooms/create-new}">Create new room</a><br><br>
+<a th:href="@{/rooms/create}">Create new room</a><br><br>
 <table th:border="1">
     <tr>
-        <td>Id</td>
-        <td>Number</td>
-        <td>View</td>
-        <td>fo id</td>
-        <td>room rank</td>
-        <td>hk id</td>
-        <td>action</td>
+        <th>Id</th>
+        <th>Number</th>
+        <th>FO Status</th>
+        <th>HK Status</th>
+        <th>Room Rank</th>
+        <th>View</th>
+        <th>action</th>
     </tr>
-    <tr th:each="room : ${roomlist}">
+    <tr th:each="room : ${rooms}">
         <td th:text="${room.getId()}"></td>
-        <td th:text="${room.getView()}"></td>
         <td th:text="${room.getNumber()}"></td>
         <td th:text="${room.getFoStatus().getStatus()}"></td>
-        <td th:text="${room.getRoomRank().getStatus()}"></td>
         <td th:text="${room.getHkStatus().getStatus()}"></td>
+        <td th:text="${room.getRoomRank().getStatus()}"></td>
+        <td th:text="${room.getView()}"></td>
         <td>
             <a th:href="@{/rooms/edit/__${room.getId()}__}">edit</a>
             <a th:href="@{/rooms/delete/__${room.getId()}__}">delete</a>
         </td>
     </tr>
 </table>
+<th:block th:if="${message}">
+    <h6 th:text="${message}"></h6>
+</th:block>
 </body>
 </html>
