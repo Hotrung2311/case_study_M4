@@ -5,32 +5,60 @@
     <title>Room Detail</title>
 </head>
 <body>
-<form method="post" th:action="@{/rooms/save-room}" th:object="${room}">
-    <th:block th:if="${room.getId()!=null}">
+<th:block th:if="${action}">
+    <h1 th:text="${action}"></h1>
+</th:block>
+<form method="post" th:action="@{/rooms/save}" th:object="${room}">
+    <th:block th:if="${room.getId()!= null}">
         <input type="hidden" th:field="*{id}">
     </th:block>
-    <tr>
-        <td>Number</td>
-        <td><input type="text" th:field="*{number}"></td>
-    </tr>
-    <tr>
-        <td>View</td>
-        <td><input type="text" th:field="*{view}"></td>
-    </tr>
-<!--    <tr>-->
-<!--        <td>fo id</td>-->
-<!--        <td><input type="text" th:field="*{foStatus.id}"></td>-->
-<!--    </tr>-->
-<!--    <tr>-->
-<!--        <td>room rank</td>-->
-<!--        <td><input type="text" th:field="*{roomRank.id}"></td>-->
-<!--    </tr>-->
-<!--    <tr>-->
-<!--        <td>hk id</td>-->
-<!--        <td><input type="text" th:field="*{hkStatus.id}"></td>-->
-<!--    </tr>-->
-    <button>save</button>
-</form>
+    <table>
+        <tr>
+            <td>Room Number</td>
+            <td><input type="text" th:field="*{number}"></td>
+        </tr>
 
+        <tr>
+            <td>FO status</td>
+            <td>
+                <select th:field="*{foStatus}">
+                    <option th:each="fo : ${fos}" th:value="${fo.getId()}" th:text="${fo.getStatus()}"></option>
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td>HK status</td>
+            <td>
+                <select th:field="*{hkStatus}">
+                    <option th:each="hk : ${hks}" th:value="${hk.getId()}" th:text="${hk.getStatus()}"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Room rank</td>
+            <td>
+                <select th:field="*{roomRank}">
+                    <option th:each="ra : ${ranks}" th:value="${ra.getId()}" th:text="${ra.getStatus()}"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>View</td>
+            <td><input type="text" th:field="*{view}"></td>
+        </tr>
+        <tr>
+            <td>
+                <Button>Save</Button>
+            </td>
+        </tr>
+
+    </table>
+
+</form>
+<th:block th:if="${message}">
+    <h6 th:text="${message}"></h6>
+</th:block>
+<a href="/rooms/list">Back to room list</a>
 </body>
 </html>

@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>Room rank list</h1>
-<a th:href="@{/rooms/room-ranks/create}">Create new room rank</a><br><br>
+<a th:href="@{/rooms/ranks/create}">Create new room rank</a><br><br>
 <table th:border="1">
     <tr>
         <td>Id</td>
@@ -17,8 +17,8 @@
         <td th:text="${rank.getId()}"></td>
         <td th:text="${rank.getStatus()}"></td>
         <td>
-            <a th:href="@{/rooms/room-ranks/edit/__${rank.getId()}__}">Edit</a>
-            <a th:href="@{/rooms/room-ranks/delete/__${rank.getId()}__}">Delete</a>
+            <a th:href="@{/rooms/ranks/edit/__${rank.getId()}__}">Edit</a>
+            <a th:href="@{/rooms/ranks/delete/__${rank.getId()}__}">Delete</a>
         </td>
     </tr>
 </table>
