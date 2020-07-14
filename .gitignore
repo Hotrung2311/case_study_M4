@@ -33,3 +33,4 @@ local.env
 
 ### VS Code ###
 .vscode/
+local.env
