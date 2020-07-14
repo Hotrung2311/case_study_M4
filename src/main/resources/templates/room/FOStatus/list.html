@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Room rank list</title>
+</head>
+<body>
+<h1>Room rank list</h1>
+<a th:href="@{/rooms/FO/create}">Create new room rank</a><br><br>
+<table th:border="1">
+    <tr>
+        <td>Id</td>
+        <td>FO Status</td>
+        <td>Action</td>
+    </tr>
+    <tr th:each="foStatus : ${foStatuses}">
+        <td th:text="${foStatus.getId()}"></td>
+        <td th:text="${foStatus.getStatus()}"></td>
+        <td>
+            <a th:href="@{/rooms/FO/edit/__${foStatus.getId()}__}">Edit</a>
+            <a th:href="@{/rooms/FO/delete/__${foStatus.getId()}__}">Delete</a>
+        </td>
+    </tr>
+</table>
+<th:block th:if="${message}">
+    <h5 th:text="${message}"></h5>
+</th:block>
+</body>
+</html>

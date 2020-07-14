@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Room rank list</title>
+</head>
+<body>
+<h1>Room rank list</h1>
+<a th:href="@{/rooms/room-ranks/create}">Create new room rank</a><br><br>
+<table th:border="1">
+    <tr>
+        <td>Id</td>
+        <td>Rank name</td>
+        <td>Action</td>
+    </tr>
+    <tr th:each="rank : ${roomRanks}">
+        <td th:text="${rank.getId()}"></td>
+        <td th:text="${rank.getStatus()}"></td>
+        <td>
+            <a th:href="@{/rooms/room-ranks/edit/__${rank.getId()}__}">Edit</a>
+            <a th:href="@{/rooms/room-ranks/delete/__${rank.getId()}__}">Delete</a>
+        </td>
+    </tr>
+</table>
+<th:block th:if="${message}">
+    <h5 th:text="${message}"></h5>
+</th:block>
+</body>
+</html>
