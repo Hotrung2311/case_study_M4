@@ -61,7 +61,7 @@ public class AccountController {
     public ModelAndView delete(@PathVariable("id") Long id){
         accountService.delete(id);
         ModelAndView mv = new ModelAndView("/account/list");
-        mv.addObject("account",accountService.findAll());
+        mv.addObject("accounts",accountService.findAll());
         mv.addObject("message","Delete is successful !!!");
         return mv;
     }

@@ -39,8 +39,9 @@ public class AccountServiceImpl implements AccountService, UserDetailsService {
 
     @Override
     public Account delete(Long id) {
-        accountRepository.delete(findOne(id));
-        return findOne(id);
+        Account account = findOne(id);
+        accountRepository.delete(account);
+        return account;
     }
 
     @Override
