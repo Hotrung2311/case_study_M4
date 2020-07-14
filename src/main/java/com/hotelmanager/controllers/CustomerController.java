@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @Controller
-@RequestMapping("/customer")
+@RequestMapping("/customers")
 public class CustomerController {
     @Autowired
     private CustomerService customerService;
@@ -25,23 +25,35 @@ public class CustomerController {
 
     @GetMapping("/create")
     public ModelAndView showCreateCustomerForm(){
-        ModelAndView mv = new ModelAndView("/customer/create");
-        mv.addObject("customers", new Customer());
+        ModelAndView mv = new ModelAndView("/customer/save");
+        mv.addObject("action","Create new customer");
+        mv.addObject("customer", new Customer());
         return mv;
     }
 
-    @PostMapping("/create")
-    public ModelAndView saveCustomer(@ModelAttribute("customers") Customer customer){
+    @PostMapping("/save")
+    public ModelAndView saveCustomer(@ModelAttribute("customer") Customer customer){
         customerService.save(customer);
-        ModelAndView mv = new ModelAndView("/customer/create");
-        mv.addObject("customers", new Customer());
+        ModelAndView mv = new ModelAndView("/customer/save");
+        mv.addObject("customer", customer);
+        mv.addObject("message","Saving is successful");
         return mv;
     }
 
     @GetMapping("/edit/{id}")
     public ModelAndView showEditForm(@PathVariable("id") Long id){
         Customer customer = customerService.findOne(id);
-        ModelAndView mv = new ModelAndView("/customer/edit");
+        ModelAndView mv = new ModelAndView("/customer/save");
+        mv.addObject("action","Edit customer "+customer.getLastName());
+        mv.addObject("customer",customer);
+        return mv;
+    }
+    @GetMapping("/delete/{id}")
+    public ModelAndView delete(@PathVariable("id") Long id){
+        customerService.delete(id);
+        ModelAndView mv = new ModelAndView("/customer/list");
+        mv.addObject("customers",customerService.findAll());
+        mv.addObject("message","Removed !!!");
         return mv;
     }
 }

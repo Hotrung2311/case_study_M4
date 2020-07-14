@@ -5,23 +5,44 @@
     <title>Title</title>
 </head>
 <body>
-<a href="/customer/create">Create new customer</a>
-<h1>Customers</h1>
-<table border="1">
-    <tr>
-        <th>First name</th>
-        <th>Last name</th>
-        <th>Edit</th>
-        <th>Delete</th>
-    </tr>
-    <th:block th:each="customer : ${customers}">
+<div>
+    <h1>Account list</h1>
+    <h5><a href="/customers/create">Create new account</a></h5>
+    <table border="1" cellpadding="5">
         <tr>
-            <td th:text="${customer.firstName}"></td>
-            <td th:text="${customer.lastName}"></td>
-            <td><a th:href="@{/edit-customer/__${customer.id}__ }">Edit</a></td>
-            <td><a th:href="@{/delete-customer/__${customer.id}__ }">Delete</a></td>
+            <th>ID</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>ID Number</th>
+            <th>Phone Number</th>
+            <th>Email</th>
+            <th>Company</th>
+            <th>Address</th>
+            <th>Edit</th>
+            <th>Delete</th>
         </tr>
+        <tr th:each=" cus : ${customers}">
+            <td th:text="${cus.getId()}"></td>
+            <td th:text="${cus.firstName}"></td>
+            <td th:text="${cus.lastName}"></td>
+            <td th:text="${cus.getIDNumber()}"></td>
+            <td th:text="${cus.getPhoneNumber()}"></td>
+            <td th:text="${cus.getEmail()}"></td>
+            <td th:text="${cus.getCompany()}"></td>
+            <td th:text="${cus.getAddress()}"></td>
+            <td>
+                <a th:href="@{/customers/edit/__${cus.getId()}__}">Edit</a>
+
+            </td>
+            <td>
+                <a th:href="@{/customers/delete/__${cus.getId()}__}">Delete</a>
+            </td>
+        </tr>
+    </table>
+    <th:block th:if="${message}">
+        <h6 th:text="${message}"></h6>
     </th:block>
-</table>
+</div>
 </body>
 </html>
+
