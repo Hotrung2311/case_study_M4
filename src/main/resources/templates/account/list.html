@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <h1>Account list</h1>
+    <h5><a href="/accounts/create">Create new account</a></h5>
+    <table border="1" cellpadding="5">
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Role</th>
+            <th>Action</th>
+        </tr>
+        <tr th:each=" acc : ${accounts}">
+            <td th:text="${acc.getId()}"></td>
+            <td th:text="${acc.getUsername()}"></td>
+            <td th:text="${acc.getRole().getName()}"></td>
+            <td>
+                <a th:href="@{/accounts/edit/__${acc.getId()}__}">Edit</a>
+                <a th:href="@{/accounts/delete/__${acc.getId()}__}">Delete</a>
+            </td>
+        </tr>
+    </table>
+    <th:block th:if="${message}">
+        <h6 th:text="${message}"></h6>
+    </th:block>
+</div>
+</body>
+</html>

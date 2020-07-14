@@ -22,6 +22,7 @@ build/
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
+local.env
 
 ### NetBeans ###
 /nbproject/private/
@@ -32,3 +33,4 @@ out/
 
 ### VS Code ###
 .vscode/
+local.env

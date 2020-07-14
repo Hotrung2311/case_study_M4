@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>
+        <th:block th:if="${action}">
+            <h1 th:text="${action}"></h1>
+        </th:block>
+        <th:block th:if="${message}">
+            <h1 th:text="${message}"></h1>
+        </th:block>
+        <form action="#" th:action="@{/roles/save}" method="post" th:object="${role}">
+            <th:block th:if="${role.getId() != null}">
+                <input type="hidden" th:field="*{id}">
+            </th:block>
+            <table>
+                <tr>
+                    <td>Role name</td>
+                    <td><input type="text" th:field="*{name}"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <Button>Save</Button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <a href="/roles/list"> Back to Role list</a>
+    </div>
+
+</body>
+</html>
