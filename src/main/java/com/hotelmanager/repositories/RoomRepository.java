@@ -1,4 +1,7 @@
 package com.hotelmanager.repositories;
 
-public class RoomRepository {
+import com.hotelmanager.models.room.Room;
+import org.springframework.data.repository.CrudRepository;
+
+public interface RoomRepository extends CrudRepository<Room, Long> {
 }

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Room Detail</title>
+</head>
+<body>
+<form method="post" th:action="@{/rooms/save-room}" th:object="${room}">
+    <th:block th:if="${room.getId()!=null}">
+        <input type="hidden" th:field="*{id}">
+    </th:block>
+    <tr>
+        <td>Number</td>
+        <td><input type="text" th:field="*{number}"></td>
+    </tr>
+    <tr>
+        <td>View</td>
+        <td><input type="text" th:field="*{view}"></td>
+    </tr>
+<!--    <tr>-->
+<!--        <td>fo id</td>-->
+<!--        <td><input type="text" th:field="*{foStatus.id}"></td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--        <td>room rank</td>-->
+<!--        <td><input type="text" th:field="*{roomRank.id}"></td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--        <td>hk id</td>-->
+<!--        <td><input type="text" th:field="*{hkStatus.id}"></td>-->
+<!--    </tr>-->
+    <button>save</button>
+</form>
+
+</body>
+</html>
