@@ -1,4 +1,4 @@
 package com.hotelmanager.repositories;
 
-public class RoomRepository {
+public interface RoomRepository {
 }
