@@ -22,6 +22,7 @@ build/
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
+local.env
 
 ### NetBeans ###
 /nbproject/private/
@@ -32,6 +33,9 @@ out/
 
 ### VS Code ###
 .vscode/
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 6bccdae96905c03a573de0621cde44902735f68f
 local.env

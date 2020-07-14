@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create customer</title>
+</head>
+<body>
+<h1>Create customer</h1>
+<th:block th:if="${action}">
+    <h1 th:text="${action}"></h1>
+</th:block>
+<th:block th:if="${message}">
+    <p th:text="${message}"></p>
+</th:block>
+<form th:action="@{/customers/save}" th:object="${customer}" method="post">
+    <th:block th:if="${customer.getId() != null}">
+        <input type="hidden" th:field="*{id}">
+    </th:block>
+    <table>
+        <tr>
+            <td>First name:</td>
+            <td><input type="text" th:field="*{firstName}"/></td>
+        </tr>
+        <tr>
+            <td>Last name:</td>
+            <td><input type="text" th:field="*{lastName}"/></td>
+        </tr>
+        <tr>
+            <td>ID number:</td>
+            <td><input type="text" th:field="*{IDNumber}"/></td>
+        </tr>
+        <tr>
+            <td>Phone Number:</td>
+            <td><input type="text" th:field="*{phoneNumber}"/></td>
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td><input type="text" th:field="*{email}"/></td>
+        </tr>
+        <tr>
+            <td>Company:</td>
+            <td><input type="text" th:field="*{company}"/></td>
+        </tr>
+        <tr>
+            <td>Address:</td>
+            <td><input type="text" th:field="*{address}"/></td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Create customer"></td>
+        </tr>
+    </table>
+    <h6><a href="/customers/list">Back to customer list</a></h6>
+</form>
+</body>
+</html>

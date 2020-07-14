@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <th:block th:if="${action}">
+        <h1 th:text="${action}"></h1>
+    </th:block>
+    <th:block th:if="${message}">
+        <h1 th:text="${message}"></h1>
+    </th:block>
+    <form action="#" th:action="@{/accounts/save}" method="post" th:object="${account}">
+        <th:block th:if="${account.getId() != null}">
+            <input type="hidden" th:field="*{id}">
+        </th:block>
+        <table>
+            <tr>
+                <td>Username</td>
+                <td><input type="text" th:field="*{username}"></td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td><input type="password" th:field="*{password}"></td>
+            </tr>
+            <tr>
+                <td>Set Role</td>
+                <td>
+                    <select th:field="*{role}">
+                        <option th:each="r : ${roles}" th:value="${r.id}" th:text="${r.name}"></option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <Button>Save</Button>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <a href="/accounts/list"> Back to Account list</a>
+</div>
+
+</body>
+</html>

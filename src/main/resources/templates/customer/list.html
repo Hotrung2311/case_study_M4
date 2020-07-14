@@ -1,10 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
+<div>
+    <h1>Account list</h1>
+    <h5><a href="/customers/create">Create new account</a></h5>
+    <table border="1" cellpadding="5">
+        <tr>
+            <th>ID</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>ID Number</th>
+            <th>Phone Number</th>
+            <th>Email</th>
+            <th>Company</th>
+            <th>Address</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        <tr th:each=" cus : ${customers}">
+            <td th:text="${cus.getId()}"></td>
+            <td th:text="${cus.firstName}"></td>
+            <td th:text="${cus.lastName}"></td>
+            <td th:text="${cus.getIDNumber()}"></td>
+            <td th:text="${cus.getPhoneNumber()}"></td>
+            <td th:text="${cus.getEmail()}"></td>
+            <td th:text="${cus.getCompany()}"></td>
+            <td th:text="${cus.getAddress()}"></td>
+            <td>
+                <a th:href="@{/customers/edit/__${cus.getId()}__}">Edit</a>
 
+            </td>
+            <td>
+                <a th:href="@{/customers/delete/__${cus.getId()}__}">Delete</a>
+            </td>
+        </tr>
+    </table>
+    <th:block th:if="${message}">
+        <h6 th:text="${message}"></h6>
+    </th:block>
+</div>
 </body>
 </html>
+
