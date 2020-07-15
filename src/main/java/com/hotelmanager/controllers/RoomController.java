@@ -71,4 +71,12 @@ public class RoomController {
         mv.addObject("message", "Thêm thành công !");
         return mv;
     }
+    @GetMapping("/delete/{id}")
+    public  ModelAndView delete(@PathVariable("id") Long id){
+        roomService.delete(id);
+        ModelAndView mv = new ModelAndView("room/list");
+        mv.addObject("rooms",roomService.findAll());
+        mv.addObject("message","Removed !!!");
+        return mv;
+    }
 }

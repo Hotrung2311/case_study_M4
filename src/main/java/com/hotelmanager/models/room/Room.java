@@ -12,6 +12,7 @@ public class Room {
     private Long id;
 
     private String view;
+    @Column(unique = true)
     private String number;
 
     @ManyToOne
