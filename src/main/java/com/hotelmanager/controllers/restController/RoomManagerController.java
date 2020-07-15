@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
+
 import java.util.List;
 
 @RestController
@@ -15,15 +16,17 @@ import java.util.List;
 public class RoomManagerController {
     @Autowired
     private RoomService roomService;
+
     @GetMapping("/rooms")
-    public ResponseEntity<List<Room>> findAllRooms(){
+    public ResponseEntity<List<Room>> findAllRooms() {
         List<Room> rooms = roomService.findAll();
-        if(rooms.isEmpty())
+        if (rooms.isEmpty())
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        return new ResponseEntity<>(rooms,HttpStatus.OK);
+        return new ResponseEntity<>(rooms, HttpStatus.OK);
     }
-    @RequestMapping( name = "/rooms/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Room> findRoomById(@PathVariable("id") Long id){
+
+    @GetMapping("/rooms/{id}")
+    public ResponseEntity<Room> findRoomById(@PathVariable Long id) {
         Room room = roomService.findOne(id);
         if (room == null) {
             return new ResponseEntity<>(null,
@@ -31,8 +34,9 @@ public class RoomManagerController {
         }
         return new ResponseEntity<>(room, HttpStatus.OK);
     }
+
     @PostMapping("/rooms")
-    public ResponseEntity<Room> createRoom(@RequestBody Room room, UriComponentsBuilder builder){
+    public ResponseEntity<Room> createRoom(@RequestBody Room room, UriComponentsBuilder builder) {
         roomService.save(room);
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(builder.path("/products/{id}")
@@ -40,7 +44,7 @@ public class RoomManagerController {
         return new ResponseEntity<>(room, HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/products/{id}",
+    @RequestMapping(value = "/rooms/{id}",
             method = RequestMethod.PUT)
     public ResponseEntity<Room> updateRoom(
             @PathVariable("id") Long id,
@@ -59,6 +63,7 @@ public class RoomManagerController {
         roomService.save(currentRoom);
         return new ResponseEntity<>(currentRoom, HttpStatus.OK);
     }
+
     @RequestMapping(value = "/rooms/{id}",
             method = RequestMethod.DELETE)
     public ResponseEntity<Room> deleteRoom(
