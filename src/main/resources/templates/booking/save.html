@@ -20,61 +20,66 @@
                         <div class="card shadow-lg border-0 rounded-lg mt-5">
                             <div class="card-header"><h3 class="text-center font-weight-light my-4">Create New Booking</h3></div>
                             <div class="card-body">
-                                <form method="post" th:action="@{/bookingrooms/save}" th:object="${room}">
+                                <form  action="/booking/save" th:object="${booking}" method="post">
                                     <div class="form-row">
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label class="small mb-1" for="inputDateBooked">Date Booked</label>
-                                                <input class="form-control py-4" id="inputDateBooked" type="text" placeholder="Enter first name" />
+                                                <input th:field="*{date_booked}" class="form-control py-4" id="inputDateBooked" type="datetime-local" placeholder="Enter Date Booked" />
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="small mb-1" for="inputDateArrived">Date Arrived</label>
-                                                <input class="form-control py-4" id="inputDateArrived" type="text" placeholder="Enter last name" />
+                                                <input th:field="*{date_arrived}" class="form-control py-4" id="inputDateArrived" type="datetime-local" placeholder="Enter Date Arrived" />
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="small mb-1" for="inputDateDeparted">Date Departed</label>
-                                                <input class="form-control py-4" id="inputDateDeparted" type="text" placeholder="Enter first name" />
+                                                <input th:field="*{date_departed}" class="form-control py-4" id="inputDateDeparted" type="datetime-local" placeholder="Enter Date Departed"/>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
-<!--                                        <label class="small mb-1" for="inputRoomRank">Room Rank</label>-->
-<!--                                        <input class="form-control py-4" id="inputRoomRank" type="text" placeholder="Choose room rank" />-->
-                                        <label class="small mb-1">Room Rank</label>
-                                        <select th:field="*{roomRank}" class="form-control">
-                                            <option value=""> -- </option>
-                                            <option th:each="ra : ${ranks}" th:value="${ra.getId()}" th:text="${ra.getStatus()}"></option>
-                                        </select>
+                                        <label class="small mb-1" for="inputRoomRank">Room Rank</label>
+                                        <input th:field="*{roomtypes}" class="form-control py-4" id="inputRoomRank" type="text" placeholder="Choose room rank" />
+<!--                                        <label class="small mb-1">Room Rank</label>-->
+<!--                                        <select th:field="*{roomRank}" class="form-control">-->
+<!--                                            <option value=""> &#45;&#45; </option>-->
+<!--                                            <option th:each="ra : ${booking}" th:value="${ra.getId()}" th:text="${ra.getRoomRank()}"></option>-->
+<!--                                        </select>-->
                                     </div>
                                     <div class="form-group">
                                         <label class="small mb-1" for="inputView">View</label>
-                                        <input class="form-control py-4" id="inputView" type="text" placeholder="View" />
-                                        <label class="small mb-1">View</label>
-                                        <select th:field="*{view}" class="form-control">
-                                            <option value=""> -- </option>
-                                            <option th:each="ra : ${ranks}" th:value="${ra.getId()}" th:text="${ra.getStatus()}"></option>
-                                        </select>
+                                        <input th:field="*{view}" class="form-control py-4" id="inputView" type="text" placeholder="View" />
                                     </div>
                                     <div class="form-row">
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="small mb-1" for="inputAmount">Amount</label>
-                                                <input class="form-control py-4" id="inputAmount" type="text" placeholder="Enter amount" />
+                                                <input th:field="*{amount}" class="form-control py-4" id="inputAmount" type="text" placeholder="Enter amount" />
+<!--                                                <label class="small mb-1">Amount</label>-->
+<!--                                                <select th:field="*{amount}" class="form-control">-->
+<!--                                                    <option value=""> &#45;&#45; </option>-->
+<!--                                                    <option th:each="ra : ${bookings}" th:value="${ra.getId()}" th:text="${ra.getAmount()}"></option>-->
+<!--                                                </select>-->
                                             </div>
                                         </div>
                                         ​
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="small mb-1" for="inputRate">Price</label>
-                                                <input class="form-control py-4" id="inputRate" type="text" placeholder="Choose Price" />
+                                                <input th:field="*{price}" class="form-control py-4" id="inputRate" type="text" placeholder="Choose Price" />
+<!--                                                <label class="small mb-1">Price</label>-->
+<!--                                                <select th:field="*{price}" class="form-control">-->
+<!--                                                    <option value=""> &#45;&#45; </option>-->
+<!--                                                    <option th:each="ra : ${bookings}" th:value="${ra.getId()}" th:text="${ra.getPrice()}"></option>-->
+<!--                                                </select>-->
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group mt-4 mb-0"><a class="btn btn-primary btn-block" href="login.html">Create Booking</a></div>
+                                    <div class="form-group mt-4 mb-0"><button class="btn btn-primary btn-block" type="submit" >Create Booking</button></div>
                                 </form>
                             </div>
                         </div>
