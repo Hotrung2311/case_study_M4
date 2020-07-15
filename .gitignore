@@ -22,7 +22,7 @@ build/
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
-local.env
+*.env
 
 ### NetBeans ###
 /nbproject/private/
@@ -38,4 +38,3 @@ local.env
 
 =======
 >>>>>>> 6bccdae96905c03a573de0621cde44902735f68f
-local.env
