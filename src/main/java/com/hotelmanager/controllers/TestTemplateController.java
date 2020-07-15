@@ -1,6 +1,8 @@
 package com.hotelmanager.controllers;
 
 import com.hotelmanager.models.room.Room;
+import com.hotelmanager.models.room.RoomRank;
+import com.hotelmanager.services.intface.RoomRankService;
 import com.hotelmanager.services.intface.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,35 +33,46 @@ public class TestTemplateController {
         return mv;
     }
 
+    @Autowired
+    private RoomRankService roomRankService;
+
     @GetMapping("/list")
-    public ModelAndView showAllRoom(){
-        ModelAndView mv = new ModelAndView("/room/list");
-        mv.addObject("rooms", roomService.findAll());
+    public ModelAndView showAllRoomRank(){
+        ModelAndView mv = new ModelAndView("/templates_ok/tables");
+        mv.addObject("roomRanks", roomRankService.findAll());
         return mv;
     }
 
     @GetMapping("/create")
-    public ModelAndView createNewRoom(){
-        ModelAndView mv = new ModelAndView("/room/save");
-        mv.addObject("action","Create new Room");
-        mv.addObject("room", new Room());
+    public ModelAndView showDetailForm(){
+        ModelAndView mv = new ModelAndView("room/rank/save");
+        mv.addObject("roomRank", new RoomRank());
+        mv.addObject("action","Create new Rank of Room");
         return mv;
     }
 
     @GetMapping("/edit/{id}")
-    public ModelAndView createNewRoom(@PathVariable Long id){
-        ModelAndView mv = new ModelAndView("/room/save");
-        mv.addObject("action","Edit room detail");
-        mv.addObject("room", roomService.findOne(id));
+    public ModelAndView showEditForm(@PathVariable Long id){
+        ModelAndView mv = new ModelAndView("room/rank/save");
+        mv.addObject("roomRank",roomRankService.findOne(id));
+        mv.addObject("action","Edit Rank of Room " + roomRankService.findOne(id).getStatus());
         return mv;
     }
-
     @PostMapping("/save")
-    public ModelAndView saveRoom(@ModelAttribute("room")Room room){
-        roomService.save(room);
-        ModelAndView mv = new ModelAndView("/room/save");
-        mv.addObject("room",room);
-        mv.addObject("message", "Thêm thành công!");
+    public ModelAndView save(@ModelAttribute("roomRank") RoomRank roomRank){
+        roomRankService.save(roomRank);
+        ModelAndView mv = new ModelAndView("/room/rank/save");
+        mv.addObject("roomRank",roomRank);
+        mv.addObject("action","Edit Rank of Room");
+        mv.addObject("message","Saved !!!");
+        return mv;
+    }
+    @GetMapping("/delete/{id}")
+    public ModelAndView delete(@PathVariable("id") Long id){
+        roomRankService.delete(id);
+        ModelAndView mv = new ModelAndView( "/templates_ok/tables");
+        mv.addObject("roomRanks",roomRankService.findAll());
+        mv.addObject("message","Removed !!!");
         return mv;
     }
 }

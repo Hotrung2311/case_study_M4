@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <meta name="description" content=""/>
     <meta name="author" content=""/>
-    <title>List - SB Admin</title>
+    <title>Room List - SB Admin</title>
     <link href="/style/css/styles.css" rel="stylesheet"/>
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet"
           crossorigin="anonymous"/>
@@ -48,8 +48,8 @@
             <div class="sb-sidenav-menu">
                 <div class="nav">
                     <div class="sb-sidenav-menu-heading">Core</div>
-                    <a class="nav-link" href="index.html">
-                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    <a class="nav-link" href="/customers/list">
+                        <div class="sb-nav-link-icon"><i class="fa fa-address-card"></i></div>
                         Customer
                     </a>
                     <div class="sb-sidenav-menu-heading">Interface</div>
@@ -62,9 +62,10 @@
                     <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
                          data-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="layout-static.html">Room Rank</a>
-                            <a class="nav-link" href="layout-sidenav-light.html">FO Status</a>
-                            <a class="nav-link" href="layout-sidenav-light.html">HK Status</a>
+                            <a class="nav-link" href="/rooms/list">Room</a>
+                            <a class="nav-link" href="/rooms/ranks/list">Room Rank</a>
+                            <a class="nav-link" href="/rooms/FO/list">FO Status</a>
+                            <a class="nav-link" href="/rooms/HK/list">HK Status</a>
                         </nav>
                     </div>
 
@@ -75,32 +76,22 @@
                         Accounts
                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                     </a>
+
                     <div class="collapse" id="collapsePages" aria-labelledby="headingTwo"
                          data-parent="#sidenavAccordion">
-                        <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                            <a class="nav-link collapsed" href="#" data-toggle="collapse"
-                               data-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
-                                Authentication
-
-                            </a>
-
-                            <a class="nav-link collapsed" href="#" data-toggle="collapse"
-                               data-target="#pagesCollapseError" aria-expanded="false"
-                               aria-controls="pagesCollapseError">
-                                Error
-                            </a>
-
+                        <nav class="sb-sidenav-menu-nested nav">
+                            <a class="nav-link" href="/accounts/list">Account</a>
+                            <a class="nav-link" href="/roles/list">Role</a>
                         </nav>
                     </div>
                 </div>
             </div>
-
         </nav>
     </div>
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid">
-                <h1 class="mt-4">Tables</h1>
+                <h1 class="mt-4">Room List</h1>
                 <ol class="breadcrumb mb-4">
                     <li class="breadcrumb-item"><a href="index.html">Room</a></li>
                     <li class="breadcrumb-item active">List</li>
@@ -113,7 +104,7 @@
                         <div style="float:right">
                             <button>
                                 <i class="fa fa-plus" aria-hidden="true"></i>
-                                <a th:href="@{/rooms/create}">New room</a>
+                                <a th:href="@{/rooms/create}">Create room</a>
                             </button>
                         </div>
 
@@ -155,7 +146,8 @@
                                         <a th:href="@{/rooms/edit/__${room.getId()}__}">
                                             <i class="fa fa-edit"></i>
                                             Edit
-                                        </a>|
+                                        </a>
+                                        |
                                         <a th:href="@{/rooms/delete/__${room.getId()}__}">
                                             <i class="fa fa-trash" aria-hidden="true"></i>
                                             Delete
