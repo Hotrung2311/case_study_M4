@@ -5,21 +5,28 @@
     <title>Title</title>
 </head>
 <body>
-    <table border="1" cellpadding="5">
-        <tr>
-            <th>Room Number</th>
-            <th>Rank</th>
-            <th>FO status</th>
-            <th>HK status</th>
-            <th>Views</th>
-        </tr>
-        <tr th:each="room : ${rooms}">
-            <td th:text="${room.getNumber()}"></td>
-            <td th:text="${room.getRoomRank().getStatus()}"></td>
-            <td th:text="${room.getFoStatus().getStatus()}"></td>
-            <td th:text="${room.getHkStatus().getStatus()}"></td>
-            <td th:text="${room.getView()}"></td>
-        </tr>
-    </table>
+<table border="1" cellpadding="5">
+    <tr>
+        <th>Room Number</th>
+        <th>Rank</th>
+        <th>FO status</th>
+        <th>HK status</th>
+        <th>Views</th>
+    </tr>
+    <tr th:each="room : ${rooms}">
+        <td th:text="${room.getNumber()}"></td>
+        <td th:text="${room.getRoomRank().getStatus()}"></td>
+        <td>
+            <select>
+                <option th:each="fo : ${fos}" th:value="${fo.getId()}" th:text="${fo.getStatus()}"
+                        th:selected="${room.getFoStatus().getId() == fo.getId()}"></option>
+            </select>
+        </td>
+        <td th:text="${room.getHkStatus().getStatus()}"></td>
+        <td th:text="${room.getView()}"></td>
+    </tr>
+</table>
+<script>
+</script>
 </body>
 </html>
