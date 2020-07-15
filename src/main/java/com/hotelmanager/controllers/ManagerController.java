@@ -1,7 +1,9 @@
 package com.hotelmanager.controllers;
 
 import com.hotelmanager.models.room.FOStatus;
+import com.hotelmanager.models.room.HKStatus;
 import com.hotelmanager.services.intface.FOStatusService;
+import com.hotelmanager.services.intface.HKStatusService;
 import com.hotelmanager.services.intface.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,10 +21,15 @@ public class ManagerController {
     private RoomService roomService;
     @Autowired
     private FOStatusService foStatusService;
-
+    @Autowired
+    private HKStatusService hkStatusService;
     @ModelAttribute("fos")
     public List<FOStatus> getFoStatus() {
         return foStatusService.findAll();
+    }
+    @ModelAttribute("hks")
+    public List<HKStatus> getHkStatus(){
+        return hkStatusService.findAll();
     }
 
     @GetMapping("")
@@ -44,6 +51,8 @@ public class ManagerController {
 
     @GetMapping("/hk")
     public ModelAndView hkManager() {
-        return new ModelAndView("/manager/hk");
+        ModelAndView mv = new ModelAndView("/manager/hk");
+        mv.addObject("rooms", roomService.findAll());
+        return mv;
     }
 }
