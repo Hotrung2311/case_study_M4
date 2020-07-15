@@ -12,7 +12,7 @@
         <th:block th:if="${message}">
             <h1 th:text="${message}"></h1>
         </th:block>
-        <form action="#" th:action="@{/roles/save}" method="post" th:object="${role}">
+        <form action="#" th:action="@{/manager/roles/save}" method="post" th:object="${role}">
             <th:block th:if="${role.getId() != null}">
                 <input type="hidden" th:field="*{id}">
             </th:block>
@@ -28,7 +28,7 @@
                 </tr>
             </table>
         </form>
-        <a href="/roles/list"> Back to Role list</a>
+        <a href="/manager/roles/list"> Back to Role list</a>
     </div>
 
 </body>

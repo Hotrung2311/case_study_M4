@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/rooms/HK")
+@RequestMapping("/manager/rooms/HK")
 public class HKStatusController {
     @Autowired
     private HKStatusService hkStatusService;

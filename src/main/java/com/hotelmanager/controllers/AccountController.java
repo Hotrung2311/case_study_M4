@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @Controller
-@RequestMapping("/accounts")
+@RequestMapping("/manager/accounts")
 public class AccountController {
     @Autowired
     private PasswordEncoder passwordEncoder;
