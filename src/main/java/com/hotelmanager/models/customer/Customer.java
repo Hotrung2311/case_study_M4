@@ -12,12 +12,16 @@ public class Customer {
     private Long id;
     private String firstName;
     private String lastName;
+
     @Column(unique = true)
     private String IDNumber;
+
     @Column(unique = true)
     private String phoneNumber;
+
     @Column(unique = true)
     private String email;
+
     private String company;
     private String address;
 }

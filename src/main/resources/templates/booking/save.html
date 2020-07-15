@@ -20,7 +20,7 @@
                         <div class="card shadow-lg border-0 rounded-lg mt-5">
                             <div class="card-header"><h3 class="text-center font-weight-light my-4">Create New Booking</h3></div>
                             <div class="card-body">
-                                <form>
+                                <form method="post" th:action="@{/bookingrooms/save}" th:object="${room}">
                                     <div class="form-row">
                                         <div class="col-md-12">
                                             <div class="form-group">
@@ -42,20 +42,22 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="small mb-1" for="inputRoomRank">Room Rank</label>
-                                        <input class="form-control py-4" id="inputRoomRank" type="text" placeholder="Choose room rank" />
-<!--                                        <tr>-->
-<!--                                            <td>Room rank</td>-->
-<!--                                            <td>-->
-<!--                                                <select th:field="*{roomRank}">-->
-<!--                                                    <option th:each="ra : ${ranks}" th:value="${ra.getId()}" th:text="${ra.getStatus()}"></option>-->
-<!--                                                </select>-->
-<!--                                            </td>-->
-<!--                                        </tr>-->
+<!--                                        <label class="small mb-1" for="inputRoomRank">Room Rank</label>-->
+<!--                                        <input class="form-control py-4" id="inputRoomRank" type="text" placeholder="Choose room rank" />-->
+                                        <label class="small mb-1">Room Rank</label>
+                                        <select th:field="*{roomRank}" class="form-control">
+                                            <option value=""> -- </option>
+                                            <option th:each="ra : ${ranks}" th:value="${ra.getId()}" th:text="${ra.getStatus()}"></option>
+                                        </select>
                                     </div>
                                     <div class="form-group">
                                         <label class="small mb-1" for="inputView">View</label>
                                         <input class="form-control py-4" id="inputView" type="text" placeholder="View" />
+                                        <label class="small mb-1">View</label>
+                                        <select th:field="*{view}" class="form-control">
+                                            <option value=""> -- </option>
+                                            <option th:each="ra : ${ranks}" th:value="${ra.getId()}" th:text="${ra.getStatus()}"></option>
+                                        </select>
                                     </div>
                                     <div class="form-row">
                                         <div class="col-md-6">
@@ -67,8 +69,8 @@
                                         ​
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="small mb-1" for="inputRate">Rate</label>
-                                                <input class="form-control py-4" id="inputRate" type="text" placeholder="Enter rate" />
+                                                <label class="small mb-1" for="inputRate">Price</label>
+                                                <input class="form-control py-4" id="inputRate" type="text" placeholder="Choose Price" />
                                             </div>
                                         </div>
                                     </div>

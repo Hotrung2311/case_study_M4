@@ -1,13 +1,11 @@
 package com.hotelmanager.controllers;
 
+import com.hotelmanager.models.booking.Booking;
 import com.hotelmanager.models.room.FOStatus;
 import com.hotelmanager.models.room.HKStatus;
 import com.hotelmanager.models.room.Room;
 import com.hotelmanager.models.room.RoomRank;
-import com.hotelmanager.services.intface.FOStatusService;
-import com.hotelmanager.services.intface.HKStatusService;
-import com.hotelmanager.services.intface.RoomRankService;
-import com.hotelmanager.services.intface.RoomService;
+import com.hotelmanager.services.intface.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +15,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/bookingrooms")
-public class TestRoomTemplateController {
+public class BookingController {
     @Autowired
     private RoomService roomService;
     @Autowired
@@ -26,6 +24,8 @@ public class TestRoomTemplateController {
     private FOStatusService foStatusService;
     @Autowired
     private HKStatusService hkStatusService;
+    @Autowired
+    private BookingService bookingService;
 
     @ModelAttribute("ranks")
     public List<RoomRank> getRank(){
@@ -39,17 +39,22 @@ public class TestRoomTemplateController {
     public List<HKStatus> getHkStatus(){
         return  hkStatusService.findAll();
     }
+    @ModelAttribute("booking")
+    public List<Booking> getBooking(){
+        return bookingService.findAll();
+    }
+
 
     @GetMapping("/list")
     public ModelAndView showAllRoom(){
-        ModelAndView mv = new ModelAndView("/testTemplate/booking");
-        mv.addObject("rooms", roomService.findAll());
+        ModelAndView mv = new ModelAndView("/booking/list");
+        mv.addObject("rooms", bookingService.findAll());
         return mv;
     }
 
     @GetMapping("/create")
     public ModelAndView createNewRoom(){
-        ModelAndView mv = new ModelAndView("/testTemplate/booking");
+        ModelAndView mv = new ModelAndView("/booking/save");
         mv.addObject("action","Create new Booking");
         mv.addObject("room", new Room());
         return mv;
@@ -57,18 +62,27 @@ public class TestRoomTemplateController {
 
     @GetMapping("/edit/{id}")
     public ModelAndView createNewRoom(@PathVariable Long id){
-        ModelAndView mv = new ModelAndView("/room/save");
+        ModelAndView mv = new ModelAndView("/booking/save");
         mv.addObject("action","Edit room detail");
-        mv.addObject("room", roomService.findOne(id));
+        mv.addObject("room", bookingService.findOne(id));
         return mv;
     }
 
     @PostMapping("/save")
     public ModelAndView saveRoom(@ModelAttribute("room")Room room){
         roomService.save(room);
-        ModelAndView mv = new ModelAndView("/room/save");
+        ModelAndView mv = new ModelAndView("/booking/save");
         mv.addObject("room",room);
         mv.addObject("message", "Thêm thành công !");
+        return mv;
+    }
+
+    @GetMapping("/delete/{id}")
+    public  ModelAndView delete(@PathVariable("id") Long id){
+        roomService.delete(id);
+        ModelAndView mv = new ModelAndView("/booking/list");
+        mv.addObject("rooms",bookingService.findAll());
+        mv.addObject("message","Removed !!!");
         return mv;
     }
 }
