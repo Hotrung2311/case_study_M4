@@ -26,6 +26,7 @@
         <td th:text="${room.getView()}"></td>
     </tr>
 </table>
+<h6><a href="/manager/">Back to Manager Panel</a></h6>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script>
     function editRoom(dataResult) {
@@ -47,7 +48,7 @@
                     data: JSON.stringify(room),
                     dataType: 'json',
                     cache: false,
-                    timeout: 600000,
+                    timeout: 30000000,
                     success: function () {
                     },
                     error: function () {
@@ -60,8 +61,6 @@
 
             }
         });
-
-
     }
 </script>
 </body>
