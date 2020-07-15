@@ -32,6 +32,7 @@ public class SecConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/").permitAll()
                 .antMatchers("/test/**").access("hasAnyRole('ROLE_Admin')")
                 .and().formLogin()
+                .and().csrf().disable()
         ;
     }
     @Bean
