@@ -16,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @Controller
-@RequestMapping("/rooms")
+@RequestMapping("/manager/rooms")
 public class RoomController {
     @Autowired
     private RoomService roomService;

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/roles")
+@RequestMapping("/manager/roles")
 public class RoleController {
     @Autowired
     private RoleService roleService;

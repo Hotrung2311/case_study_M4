@@ -5,9 +5,9 @@
     <title>Title</title>
 </head>
 <body>
-<div
+<div>
     <h1>Role list</h1>
-    <h5><a href="/roles/create">Create new role</a></h5>
+    <h5><a href="/manager/roles/create">Create new role</a></h5>
     <table border="1" cellpadding="5">
         <tr>
             <th>ID</th>
@@ -18,8 +18,8 @@
             <td th:text="${role.getId()}"></td>
             <td th:text="${role.getName()}"></td>
             <td>
-                <a th:href="@{/roles/edit/__${role.getId()}__}">Edit</a>
-                <a th:href="@{/roles/delete/__${role.getId()}__}">Delete</a>
+                <a th:href="@{/manager/roles/edit/__${role.getId()}__}">Edit</a>
+                <a th:href="@{/manager/roles/delete/__${role.getId()}__}">Delete</a>
             </td>
         </tr>
     </table>

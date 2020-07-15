@@ -8,7 +8,7 @@
 <th:block th:if="${action}">
     <h1 th:text="${action}"></h1>
 </th:block>
-<form method="post" th:action="@{/rooms/ranks/save}" th:object="${roomRank}">
+<form method="post" th:action="@{/manager/rooms/ranks/save}" th:object="${roomRank}">
     <th:block th:if="${roomRank.getId()!=null}">
         <input type="hidden" th:field="*{id}">
     </th:block>
@@ -27,6 +27,6 @@
         <h5 th:text="${message}"></h5>
     </th:block>
 </form>
-<a href="/rooms/ranks/list">Back to Room rank list</a>
+<a href="/manager/rooms/ranks/list">Back to Room rank list</a>
 </body>
 </html>

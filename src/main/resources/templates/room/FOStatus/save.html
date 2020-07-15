@@ -8,7 +8,7 @@
 <th:block th:if="${action}">
     <h1 th:text="${action}"></h1>
 </th:block>
-<form method="post" th:action="@{/rooms/FO/save}" th:object="${foStatus}">
+<form method="post" th:action="@{/manager/rooms/FO/save}" th:object="${foStatus}">
     <th:block th:if="${foStatus.getId()!=null}">
         <input type="hidden" th:field="*{id}">
     </th:block>
@@ -26,7 +26,7 @@
     <th:block th:if="${message}">
         <h5 th:text="${message}"></h5>
     </th:block>
-    <a href="/rooms/FO/list">Back to FO status list</a>
+    <a href="/manager/rooms/FO/list">Back to FO status list</a>
 </form>
 </body>
 </html>
