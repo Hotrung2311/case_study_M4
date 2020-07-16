@@ -77,17 +77,9 @@
                                     <th>FO status</th>
                                     <th>HK status</th>
                                     <th>Views</th>
+                                    <th>Show guest details</th>
                                 </tr>
                                 </thead>
-                                <tfoot>
-                                <tr>
-                                    <th>Room Number</th>
-                                    <th>Rank</th>
-                                    <th>FO status</th>
-                                    <th>HK status</th>
-                                    <th>Views</th>
-                                </tr>
-                                </tfoot>
                                 <tbody>
                                 <tr th:each="room : ${rooms}">
                                     <td th:text="${room.getNumber()}"></td>
@@ -100,12 +92,12 @@
                                     </td>
                                     <td th:text="${room.getHkStatus().getStatus()}"></td>
                                     <td th:text="${room.getView()}"></td>
+                                    <td>
+                                        <a th:href="@{/manager/showGuest/__${room.getId()}__}"></a>
+                                    </td>
                                 </tr>
                                 </tbody>
                             </table>
-                            <th:block th:if="${message}">
-                                <h6 th:text="${message}"></h6>
-                            </th:block>
                         </div>
                     </div>
                 </div>

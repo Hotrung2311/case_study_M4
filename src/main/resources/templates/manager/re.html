@@ -114,48 +114,27 @@
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Date Booked</th>
-                                    <th>Date Arrived</th>
-                                    <th>Date Departed</th>
-                                    <th>Room Type</th>
-                                    <th>View</th>
-                                    <th>Amount</th>
-                                    <th>Price</th>
+                                    <th>First name</th>
+                                    <th>Last name</th>
+                                    <th>ID number</th>
+                                    <th>Phone number</th>
+                                    <th>Date Arrival</th>
+                                    <th>Date Departure</th>
+                                    <th>Guest numbers</th>
+                                    <td>Add to Assign List</td>
                                 </tr>
                                 </thead>
-                                <tfoot>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Date Booked</th>
-                                    <th>Date Arrived</th>
-                                    <th>Date Departed</th>
-                                    <th>Room Type</th>
-                                    <th>View</th>
-                                    <th>Amount</th>
-                                    <th>Price</th>
-                                </tr>
-                                </tfoot>
                                 <tbody>
-                                <tr th:each="boo : ${bookings}">
-                                    <td th:text="${boo.getId()}"></td>
-                                    <td th:text="${boo.getDate_booked()}"></td>
-                                    <td th:text="${boo.getDate_arrived()}"></td>
-                                    <td th:text="${boo.getDate_departed()}"></td>
-                                    <td th:text="${boo.getRoomRank()}"></td>
-                                    <td th:text="${boo.getView()}"></td>
-                                    <td th:text="${boo.getAmount()}"></td>
-                                    <td th:text="${boo.getPrice()}"></td>
+                                <tr th:each="ib : ${iBookings}">
+                                    <td th:text="${ib.getFirstName()}"></td>
+                                    <td th:text="${ib.getLastName()}"></td>
+                                    <td th:text="${ib.getIdNumber()}"></td>
+                                    <td th:text="${ib.getPhoneNumber()}"></td>
+                                    <td th:text="${ib.getCheckin()}"></td>
+                                    <td th:text="${ib.getCheckout()}"></td>
+                                    <td th:text="${ib.getGuestNumber()}"></td>
                                     <td>
-                                        <a th:href="@{/booking/edit/__${boo.getId()}__}">
-                                            <i class="fa fa-edit"></i>
-                                            Edit
-                                        </a>
-                                        |
-                                        <a th:href="@{/booking/delete/__${boo.getId()}__}">
-                                            <i class="fa fa-trash" aria-hidden="true"></i>
-                                            Delete
-                                        </a>
+                                        <a th:href="@{/manager/re/add/__${ib.getId()}__}">Add</a>
                                     </td>
                                 </tr>
 
