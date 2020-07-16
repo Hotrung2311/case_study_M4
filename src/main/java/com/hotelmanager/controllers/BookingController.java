@@ -26,7 +26,7 @@ public class BookingController {
     public ModelAndView showListCustomer() {
         List<Booking> bookings = bookingService.findAll();
         ModelAndView mv = new ModelAndView("/booking/list");
-        mv.addObject("customers", bookings);
+        mv.addObject("bookings", bookings);
         return mv;
     }
 
