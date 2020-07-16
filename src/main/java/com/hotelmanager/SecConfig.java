@@ -2,9 +2,11 @@ package com.hotelmanager;
 
 import com.hotelmanager.services.Impl.AccountServiceImpl;
 import com.hotelmanager.services.Impl.BookingServiceImpl;
+import com.hotelmanager.services.Impl.InternetBookingServiceImpl;
 import com.hotelmanager.services.Impl.RoleServiceImpl;
 import com.hotelmanager.services.intface.AccountService;
 import com.hotelmanager.services.intface.BookingService;
+import com.hotelmanager.services.intface.InternetBookingService;
 import com.hotelmanager.services.intface.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -52,5 +54,9 @@ public class SecConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public BookingService bookingService(){
         return  new BookingServiceImpl();
+    }
+    @Bean
+    public InternetBookingService internetBookingService(){
+        return new InternetBookingServiceImpl();
     }
 }

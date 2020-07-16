@@ -1,18 +1,17 @@
 package com.hotelmanager.controllers;
 
 import com.hotelmanager.models.booking.Booking;
+import com.hotelmanager.models.customer.Customer;
+import com.hotelmanager.models.customer.InternetBooking;
 import com.hotelmanager.models.room.FOStatus;
 import com.hotelmanager.models.room.HKStatus;
-import com.hotelmanager.services.intface.BookingService;
-import com.hotelmanager.services.intface.FOStatusService;
-import com.hotelmanager.services.intface.HKStatusService;
-import com.hotelmanager.services.intface.RoomService;
+import com.hotelmanager.models.room.Room;
+import com.hotelmanager.models.temp.Temp;
+import com.hotelmanager.services.Impl.CustomerServiceImpl;
+import com.hotelmanager.services.intface.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -28,6 +27,14 @@ public class ManagerController {
     private HKStatusService hkStatusService;
     @Autowired
     private BookingService bookingService;
+    @Autowired
+    private InternetBookingService internetBookingService;
+    @Autowired
+    private CustomerService customerService;
+    @ModelAttribute("temp")
+    public Temp ge(){
+        return new Temp();
+    }
     @ModelAttribute("fos")
     public List<FOStatus> getFoStatus() {
         return foStatusService.findAll();
@@ -64,9 +71,49 @@ public class ManagerController {
     @GetMapping("/re")
     public ModelAndView reManager(){
         ModelAndView mv = new ModelAndView("/manager/re");
-        mv.addObject("bookings",bookingService.findAll());
+        mv.addObject("iBookings",internetBookingService.findAll());
         return mv;
     }
+    @GetMapping("/re/add/{id}")
+    public ModelAndView reAddToFoBooking(@PathVariable("id") Long id){
+        InternetBooking internetBooking = internetBookingService.findOne(id);
+        internetBookingService.delete(id);
+        Customer customer = new Customer();
+        Booking booking = new Booking();
+        booking.setDate_arrived(internetBooking.getCheckin());
+        booking.setDate_departed(internetBooking.getCheckout());
+        booking.setAmount(internetBooking.getGuestNumber());
+        booking.setPrice(internetBooking.getRate());
+        customer.setFirstName(internetBooking.getFirstName());
+        customer.setLastName(internetBooking.getLastName());
+        customer.setPhoneNumber(internetBooking.getPhoneNumber());
+        customer.setIDNumber(internetBooking.getIdNumber());
+        customer.getBookings().add(booking);
+        booking.getCustomers().add(customer);
+        bookingService.save(booking);
+        customerService.save(customer);
+        ModelAndView modelAndView = new ModelAndView("/manager/re");
+        modelAndView.addObject("bookings",bookingService.findAll());
+        return modelAndView;
+    }
 
-
+    @GetMapping("/fo/assign")
+    public ModelAndView foAssign(){
+        ModelAndView mv = new ModelAndView("/manager/foAssign");
+        mv.addObject("books",bookingService.findAll());
+        mv.addObject("rooms",roomService.findAll());
+        return mv;
+    }
+    @PostMapping("/assignment")
+    public ModelAndView assignment(@ModelAttribute("temp") Temp temp){
+        Room room = roomService.findByNumber(temp.getNumber());
+        Booking booking = bookingService.findOne(temp.getId());
+        room.getCustomers().addAll(booking.getCustomers());
+        bookingService.delete(temp.getId());
+        roomService.save(room);
+        ModelAndView mv = new ModelAndView("/manager/foAssign");
+        mv.addObject("books",bookingService.findAll());
+        mv.addObject("rooms",roomService.findAll());
+        return mv;
+    }
 }

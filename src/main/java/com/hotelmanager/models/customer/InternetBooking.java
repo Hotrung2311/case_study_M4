@@ -23,4 +23,5 @@ public class InternetBooking {
     private String checkout;
 
     private int guestNumber;
+    private Long rate = 3000000L;
 }

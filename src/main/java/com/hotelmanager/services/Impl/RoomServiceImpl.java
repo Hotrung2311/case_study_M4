@@ -32,4 +32,9 @@ public class RoomServiceImpl implements RoomService {
         roomRepository.delete(room);
         return room;
     }
+
+    @Override
+    public Room findByNumber(String number) {
+        return roomRepository.findByNumber(number);
+    }
 }
