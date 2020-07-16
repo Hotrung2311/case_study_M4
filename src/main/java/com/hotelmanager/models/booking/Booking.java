@@ -1,11 +1,14 @@
 package com.hotelmanager.models.booking;
 
+import com.hotelmanager.models.customer.Customer;
 import com.hotelmanager.models.room.RoomRank;
 import lombok.Data;
+import lombok.ToString;
 
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
+
 
 @Entity
 @Data
@@ -22,9 +25,10 @@ public class Booking {
     private Integer amount;
     private Long price;
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(name = "booking_customer",
-    joinColumns = @JoinColumn("booking_id") ,
-    inverseJoinColumns = @JoinColumn("customer_id"))
-    private List<Booking> bookings;
+    @ToString.Exclude
+    @JoinTable( name = "booking_customer",
+            joinColumns = @JoinColumn(name = "booking_id"),
+            inverseJoinColumns = @JoinColumn(name = "customer_id"))
+    private Set<Customer> bCustomers;
 
 }

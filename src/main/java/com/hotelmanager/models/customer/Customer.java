@@ -1,9 +1,13 @@
 package com.hotelmanager.models.customer;
 
+import com.hotelmanager.models.booking.Booking;
+import com.hotelmanager.models.room.Room;
 import lombok.Data;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -25,6 +29,11 @@ public class Customer {
 
     private String company;
     private String address;
-    @ManyToMany(mappedBy = "bookings")
-    private List<Customer> customers;
+    @ManyToMany(mappedBy = "bCustomers")
+    @ToString.Exclude
+    private Set<Booking> cBookings;
+
+    @ManyToMany(mappedBy = "rCustomers")
+    @ToString.Exclude
+    private Set<Room> cRooms;
 }
