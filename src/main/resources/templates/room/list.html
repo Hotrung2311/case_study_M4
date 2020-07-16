@@ -138,10 +138,10 @@
                                 <tr th:each="room : ${rooms}">
                                     <td th:text="${room.getId()}"></td>
                                     <td th:text="${room.getNumber()}"></td>
+                                    <td th:text="${room.getView()}"></td>
                                     <td th:text="${room.getFoStatus().getStatus()}"></td>
                                     <td th:text="${room.getHkStatus().getStatus()}"></td>
                                     <td th:text="${room.getRoomRank().getStatus()}"></td>
-                                    <td th:text="${room.getView()}"></td>
                                     <td>
                                         <a th:href="@{/manager/rooms/edit/__${room.getId()}__}">
                                             <i class="fa fa-edit"></i>
