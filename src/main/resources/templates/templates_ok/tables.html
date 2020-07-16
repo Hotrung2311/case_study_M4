@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>HK Status List - SB Admin</title>
+    <title>Role List - SB Admin</title>
     <link href="/style/css/styles.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
@@ -43,7 +43,7 @@
             <div class="sb-sidenav-menu">
                 <div class="nav">
                     <div class="sb-sidenav-menu-heading">Core</div>
-                    <a class="nav-link" href="/customers/list">
+                    <a class="nav-link" href="/manager/customers/list">
                         <div class="sb-nav-link-icon"><i class="fa fa-address-card"></i></div>
                         Customer
                     </a>
@@ -57,10 +57,10 @@
                     <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
                          data-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="/rooms/list">Room</a>
-                            <a class="nav-link" href="/rooms/ranks/list">Room Rank</a>
-                            <a class="nav-link" href="/rooms/FO/list">FO Status</a>
-                            <a class="nav-link" href="/rooms/HK/list">HK Status</a>
+                            <a class="nav-link" href="/manager/rooms/list">Room</a>
+                            <a class="nav-link" href="/manager/rooms/ranks/list">Room Rank</a>
+                            <a class="nav-link" href="/manager/rooms/FO/list">FO Status</a>
+                            <a class="nav-link" href="/manager/rooms/HK/list">HK Status</a>
                         </nav>
                     </div>
 
@@ -75,8 +75,8 @@
                     <div class="collapse" id="collapsePages" aria-labelledby="headingTwo"
                          data-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="/accounts/list">Account</a>
-                            <a class="nav-link" href="/roles/list">Role</a>
+                            <a class="nav-link" href="/manager/accounts/list">Account</a>
+                            <a class="nav-link" href="/manager/roles/list">Role</a>
                         </nav>
                     </div>
                 </div>
@@ -87,19 +87,19 @@
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid">
-                <h1 class="mt-4">FO Status List</h1>
+                <h1 class="mt-4">Role List</h1>
                 <ol class="breadcrumb mb-4">
-                    <li class="breadcrumb-item"><a href="index.html">FO Status</a></li>
+                    <li class="breadcrumb-item"><a href="index.html">Role</a></li>
                     <li class="breadcrumb-item active">List</li>
                 </ol>
                 <div class="card mb-4">
                     <div class="card-header">
                         <i class="fas fa-table mr-1"></i>
-                        FO Status List
+                        Role List
                         <div style="float:right">
                             <button>
                                 <i class="fa fa-plus" aria-hidden="true"></i>
-                                <a th:href="@{/rooms/FO/create}">Create FO Status</a>
+                                <a th:href="@{/manager/roles/create}">Create role</a>
                             </button>
                         </div>
 
@@ -109,35 +109,35 @@
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                 <tr>
-                                    <th>Room Number</th>
+                                    <th>#</th>
                                     <th>Rank</th>
-                                    <th>FO status</th>
-                                    <th>HK status</th>
-                                    <th>Views</th>
+                                    <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tfoot>
                                 <tr>
-                                    <th>Room Number</th>
+                                    <th>#</th>
                                     <th>Rank</th>
-                                    <th>FO status</th>
-                                    <th>HK status</th>
-                                    <th>Views</th>
+                                    <th>Action</th>
                                 </tr>
                                 </tfoot>
                                 <tbody>
-                                <tr th:each="room : ${rooms}">
-                                    <td th:text="${room.getNumber()}"></td>
-                                    <td th:text="${room.getRoomRank().getStatus()}"></td>
-                                    <td th:text="${room.getFoStatus().getStatus()}"></td>
+                                <tr th:each="role : ${roles}">
+                                    <td th:text="${role.getId()}"></td>
+                                    <td th:text="${role.getName()}"></td>
                                     <td>
-                                        <select id="select-hk" th:onclick="|editRoom('${room.id}')|">
-                                            <option th:each="hk : ${hks}" th:value="${hk.getId()}" th:text="${hk.getStatus()}"
-                                                    th:selected="${room.getHkStatus().getId() == hk.getId()}"></option>
-                                        </select>
+                                        <a th:href="@{/manager/roles/edit/__${role.getId()}__}">
+                                            <i class="fa fa-edit"></i>
+                                            Edit
+                                        </a>
+                                        |
+                                        <a th:href="@{/manager/roles/delete/__${role.getId()}__}">
+                                            <i class="fa fa-trash" aria-hidden="true"></i>
+                                            Delete
+                                        </a>
                                     </td>
-                                    <td th:text="${room.getView()}"></td>
                                 </tr>
+
                                 </tbody>
                             </table>
                             <th:block th:if="${message}">
@@ -168,41 +168,5 @@
 <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
 <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
 <script src="/style/assets/demo/datatables-demo.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script>
-    function editRoom(dataResult) {
-        const id = dataResult;
-        $.ajax({
-            type: "GET",
-            contentType: "application/json",
-            url: '/api/rooms/' + id,
-            dataType: 'json',
-            cache: false,
-            timeout: 600000,
-            success: function (result) {
-                let room = result;
-                room.hkStatus.id = document.getElementById("select-hk").value;
-                $.ajax({
-                    type: "PUT",
-                    contentType: "application/json",
-                    url: '/api/rooms/' + id,
-                    data: JSON.stringify(room),
-                    dataType: 'json',
-                    cache: false,
-                    timeout: 30000000,
-                    success: function () {
-                    },
-                    error: function () {
-                    }
-                });
-            },
-            error: function () {
-
-                alert("fail")
-
-            }
-        });
-    }
-</script>
 </body>
 </html>

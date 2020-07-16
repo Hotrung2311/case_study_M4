@@ -116,4 +116,11 @@ public class ManagerController {
         mv.addObject("rooms",roomService.findAll());
         return mv;
     }
+
+    @GetMapping("/index")
+    public ModelAndView indexManager(){
+        ModelAndView mv = new ModelAndView("/manager/index");
+//        mv.addObject("bookings",bookingService.findAll());
+        return mv;
+    }
 }
