@@ -3,6 +3,7 @@ package com.hotelmanager.models.customer;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -24,4 +25,6 @@ public class Customer {
 
     private String company;
     private String address;
+    @ManyToMany(mappedBy = "bookings")
+    private List<Customer> customers;
 }
