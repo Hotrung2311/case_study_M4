@@ -23,7 +23,7 @@ public class BookingController {
     private BookingService bookingService;
 
     @GetMapping("/list")
-    public ModelAndView showListCustomer() {
+    public ModelAndView showBookingList() {
         List<Booking> bookings = bookingService.findAll();
         ModelAndView mv = new ModelAndView("/booking/list");
         mv.addObject("bookings", bookings);
@@ -31,7 +31,7 @@ public class BookingController {
     }
 
     @GetMapping("/create")
-    public ModelAndView showCreateCustomerForm(){
+    public ModelAndView showCreateBookingForm(){
         ModelAndView mv = new ModelAndView("/booking/save");
         mv.addObject("action","Create new booking");
         mv.addObject("booking", new Booking());
@@ -39,11 +39,9 @@ public class BookingController {
     }
 
     @PostMapping("/save")
-    public String saveCustomer(@ModelAttribute("booking") Booking booking, Model model){
+    public String saveBooking(@ModelAttribute("booking") Booking booking, Model model){
         System.out.println(booking.getRoomtypes());
         bookingService.save(booking);
-//        ModelAndView mv = new ModelAndView("/booking/save");
-//        model.addAttribute("booking", booking);
         model.addAttribute("message","Saving is successful");
         return "redirect:/booking/create";
     }
@@ -63,37 +61,5 @@ public class BookingController {
         mv.addObject("message","Removed !!!");
         return mv;
     }
-
-//    @Autowired
-//    private BookingService bookingService;
-//
-//    @ModelAttribute("booking")
-//    public List<Booking> getBooking(){
-//        return bookingService.findAll();
-//    }
-//
-//    @GetMapping("/list")
-//    public ModelAndView showAllRoom(){
-//        ModelAndView mv = new ModelAndView("/booking/list");
-//        mv.addObject("bookings", bookingService.findAll());
-//        return mv;
-//    }
-//
-//    @GetMapping("/create")
-//    public ModelAndView createNewRoom(){
-//        ModelAndView mv = new ModelAndView("/booking/save");
-//        mv.addObject("action","Create new Booking");
-//        mv.addObject("booking", new Booking());
-//        return mv;
-//    }
-//
-//    @GetMapping("/edit/{id}")
-//    public ModelAndView createNewRoom(@PathVariable Long id){
-//        ModelAndView mv = new ModelAndView("/booking/save");
-//        mv.addObject("action","Edit booking detail");
-//        mv.addObject("booking", bookingService.findOne(id));
-//        return mv;
-//    }
-//
 
 }
