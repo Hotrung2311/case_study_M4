@@ -134,6 +134,7 @@
                                     <th>View</th>
                                     <th>Amount</th>
                                     <th>Price</th>
+                                    <td>Add to Assign List</td>
                                 </tr>
                                 </tfoot>
                                 <tbody>
@@ -156,6 +157,9 @@
                                             <i class="fa fa-trash" aria-hidden="true"></i>
                                             Delete
                                         </a>
+                                    </td>
+                                    <td>
+                                        <a th:href="@{/re/add/__${boo.getId()}__}">Add</a>
                                     </td>
                                 </tr>
 

@@ -1,5 +1,6 @@
 package com.hotelmanager.controllers;
 
+import com.hotelmanager.models.booking.Booking;
 import com.hotelmanager.models.room.FOStatus;
 import com.hotelmanager.models.room.HKStatus;
 import com.hotelmanager.services.intface.BookingService;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -65,4 +67,6 @@ public class ManagerController {
         mv.addObject("bookings",bookingService.findAll());
         return mv;
     }
+
+
 }
