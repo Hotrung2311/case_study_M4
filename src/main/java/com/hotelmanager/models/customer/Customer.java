@@ -29,11 +29,11 @@ public class Customer {
 
     private String company;
     private String address;
-    @ManyToMany(mappedBy = "bCustomers")
+    @ManyToMany(mappedBy = "customers")
     @ToString.Exclude
-    private Set<Booking> cBookings;
+    private Set<Booking> bookings;
 
-    @ManyToMany(mappedBy = "rCustomers")
+    @ManyToMany(mappedBy = "customers")
     @ToString.Exclude
-    private Set<Room> cRooms;
+    private Set<Room> rooms;
 }

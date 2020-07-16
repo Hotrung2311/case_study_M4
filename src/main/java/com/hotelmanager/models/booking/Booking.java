@@ -29,6 +29,6 @@ public class Booking {
     @JoinTable( name = "booking_customer",
             joinColumns = @JoinColumn(name = "booking_id"),
             inverseJoinColumns = @JoinColumn(name = "customer_id"))
-    private Set<Customer> bCustomers;
+    private Set<Customer> customers;
 
 }

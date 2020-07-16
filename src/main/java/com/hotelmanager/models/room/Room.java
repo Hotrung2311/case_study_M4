@@ -32,5 +32,5 @@ public class Room {
     @JoinTable( name = "room_customer",
             joinColumns = @JoinColumn(name = "room_id"),
             inverseJoinColumns = @JoinColumn(name = "customer_id"))
-    private Set<Customer> rCustomers;
+    private Set<Customer> customers;
 }
