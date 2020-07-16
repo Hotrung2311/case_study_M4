@@ -2,6 +2,7 @@ package com.hotelmanager.controllers;
 
 import com.hotelmanager.models.room.FOStatus;
 import com.hotelmanager.models.room.HKStatus;
+import com.hotelmanager.services.intface.BookingService;
 import com.hotelmanager.services.intface.FOStatusService;
 import com.hotelmanager.services.intface.HKStatusService;
 import com.hotelmanager.services.intface.RoomService;
@@ -23,6 +24,8 @@ public class ManagerController {
     private FOStatusService foStatusService;
     @Autowired
     private HKStatusService hkStatusService;
+    @Autowired
+    private BookingService bookingService;
     @ModelAttribute("fos")
     public List<FOStatus> getFoStatus() {
         return foStatusService.findAll();
@@ -31,6 +34,7 @@ public class ManagerController {
     public List<HKStatus> getHkStatus(){
         return hkStatusService.findAll();
     }
+
 
     @GetMapping("")
     public ModelAndView home() {
@@ -53,6 +57,12 @@ public class ManagerController {
     public ModelAndView hkManager() {
         ModelAndView mv = new ModelAndView("/manager/hk");
         mv.addObject("rooms", roomService.findAll());
+        return mv;
+    }
+    @GetMapping("/re")
+    public ModelAndView reManager(){
+        ModelAndView mv = new ModelAndView("/manager/re");
+        mv.addObject("bookings",bookingService.findAll());
         return mv;
     }
 }

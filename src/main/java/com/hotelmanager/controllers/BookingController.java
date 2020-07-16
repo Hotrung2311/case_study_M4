@@ -1,6 +1,7 @@
 package com.hotelmanager.controllers;
 
 import com.hotelmanager.models.booking.Booking;
+import com.hotelmanager.models.room.RoomRank;
 import com.hotelmanager.services.intface.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,17 +17,15 @@ public class BookingController {
 
     @Autowired
     private BookingService bookingService;
+    @Autowired
+    private RoomRankService roomRankService;
 
-    @GetMapping("/list")
-    public ModelAndView showBookingList() {
-        List<Booking> bookings = bookingService.findAll();
-        ModelAndView mv = new ModelAndView("/booking/list");
-        mv.addObject("bookings", bookings);
-        return mv;
+    @ModelAttribute("ranks")
+    public List<RoomRank> roomRank(){
+        return  roomRankService.findAll();
     }
-
     @GetMapping("/create")
-    public ModelAndView showCreateBookingForm(){
+    public ModelAndView showCreateCustomerForm(){
         ModelAndView mv = new ModelAndView("/booking/save");
         mv.addObject("action","Create new booking");
         mv.addObject("booking", new Booking());
@@ -34,8 +33,7 @@ public class BookingController {
     }
 
     @PostMapping("/save")
-    public String saveBooking(@ModelAttribute("booking") Booking booking, Model model){
-        System.out.println(booking.getRoomtypes());
+    public String saveCustomer(@ModelAttribute("booking") Booking booking, Model model){
         bookingService.save(booking);
         model.addAttribute("message","Saving is successful");
         return "redirect:/booking/create";
@@ -51,10 +49,9 @@ public class BookingController {
     @GetMapping("/delete/{id}")
     public ModelAndView delete(@PathVariable("id") Long id){
         bookingService.delete(id);
-        ModelAndView mv = new ModelAndView("/booking/list");
+        ModelAndView mv = new ModelAndView("/manager/re");
         mv.addObject("bookings",bookingService.findAll());
         mv.addObject("message","Removed !!!");
         return mv;
     }
-
 }

@@ -26,7 +26,7 @@ public class BookingFormatter implements Formatter<Booking> {
                  +object.getDate_booked() + ", "
                  +object.getDate_departed() + ", "
                  +object.getView() + ", "
-                 +object.getRoomtypes() + ", "
+                 +object.getRoomRank() + ", "
                  +object.getPrice() + "]";
     }
 }

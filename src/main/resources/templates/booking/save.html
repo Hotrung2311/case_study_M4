@@ -45,8 +45,11 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="small mb-1" for="inputRoomRank">Room Rank</label>
-                                        <input th:field="*{roomtypes}" class="form-control py-4" id="inputRoomRank" type="text" placeholder="Choose room rank" />
+                                        <label class="small mb-1">Room Rank</label>
+                                        <select  th:field="*{roomRank}">
+                                            <option  th:each="rank : ${ranks}" th:value="${rank.getId()}" th:text="${rank.getStatus()}">
+                                            </option>
+                                        </select>
                                     </div>
                                     <div class="form-group">
                                         <label class="small mb-1" for="inputView">View</label>
