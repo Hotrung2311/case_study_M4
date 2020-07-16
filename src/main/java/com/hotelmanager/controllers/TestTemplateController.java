@@ -1,6 +1,5 @@
 package com.hotelmanager.controllers;
 
-import com.hotelmanager.models.room.Room;
 import com.hotelmanager.models.room.RoomRank;
 import com.hotelmanager.services.intface.RoomRankService;
 import com.hotelmanager.services.intface.RoomService;
@@ -16,9 +15,9 @@ public class TestTemplateController {
     @Autowired
     private RoomService roomService;
 
-    @GetMapping("/booking")
+    @GetMapping("/homepage")
     public String bookingView() {
-        return "/templates_ok/booking";
+        return "home/Homepage";
     }
 
     @GetMapping("/login")

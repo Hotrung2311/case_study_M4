@@ -140,13 +140,13 @@
                                 <tbody>
                                 <tr th:each=" cus : ${customers}">
                                     <td th:text="${cus.getId()}"></td>
+                                    <td th:text="${cus.getIDNumber()}"></td>
+                                    <td th:text="${cus.getAddress()}"></td>
+                                    <td th:text="${cus.getCompany()}"></td>
+                                    <td th:text="${cus.getEmail()}"></td>
                                     <td th:text="${cus.firstName}"></td>
                                     <td th:text="${cus.lastName}"></td>
-                                    <td th:text="${cus.getIDNumber()}"></td>
                                     <td th:text="${cus.getPhoneNumber()}"></td>
-                                    <td th:text="${cus.getEmail()}"></td>
-                                    <td th:text="${cus.getCompany()}"></td>
-                                    <td th:text="${cus.getAddress()}"></td>
                                     <td>
                                         <a th:href="@{/manager/customers/edit/__${cus.getId()}__}">
                                             <i class="fa fa-edit"></i>
