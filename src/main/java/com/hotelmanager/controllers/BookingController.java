@@ -1,11 +1,6 @@
 package com.hotelmanager.controllers;
 
 import com.hotelmanager.models.booking.Booking;
-import com.hotelmanager.models.customer.Customer;
-import com.hotelmanager.models.room.FOStatus;
-import com.hotelmanager.models.room.HKStatus;
-import com.hotelmanager.models.room.Room;
-import com.hotelmanager.models.room.RoomRank;
 import com.hotelmanager.services.intface.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
