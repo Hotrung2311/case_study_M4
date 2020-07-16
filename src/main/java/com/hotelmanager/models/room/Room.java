@@ -5,7 +5,8 @@ import lombok.Data;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
+
 
 
 @Entity
@@ -32,5 +33,5 @@ public class Room {
     @JoinTable( name = "room_customer",
             joinColumns = @JoinColumn(name = "room_id"),
             inverseJoinColumns = @JoinColumn(name = "customer_id"))
-    private Set<Customer> customers;
+    private List<Customer> customers;
 }

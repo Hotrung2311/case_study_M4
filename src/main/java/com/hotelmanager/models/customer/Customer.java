@@ -7,7 +7,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Set;
+
 
 @Entity
 @Data
@@ -31,9 +31,9 @@ public class Customer {
     private String address;
     @ManyToMany(mappedBy = "customers")
     @ToString.Exclude
-    private Set<Booking> bookings;
+    private List<Booking> bookings;
 
     @ManyToMany(mappedBy = "customers")
     @ToString.Exclude
-    private Set<Room> rooms;
+    private List<Room> rooms;
 }
